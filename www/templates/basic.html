@@ -1,0 +1,39 @@
+<ion-view view-title="Basic Expressions">
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">Basic Expressions</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <div class="row">
+                <div class="col">
+                    <div class="item item-text-wrap">
+                        English
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="item item-text-wrap">
+                        Dutch
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-repeat="item in basic">
+                <div class="card col">
+                    <div class="item item-text-wrap item-button-right">
+                        {{item.english}}
+                        <button class="button button-outline" data-btn="_basic_{{$index}}_en-us" ng-click="listen(item.english, '_basic', $index, 'en-us')">
+                            <i class="icon ionic-css-toggle ion-volume-medium"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card col">
+                    <div class="item item-text-wrap item-button-right">
+                        {{item.dutch}}
+                        <button class="button button-outline" data-btn="_basic_{{$index}}_nl" ng-click="listen(item.dutch, '_basic', $index, 'nl')">
+                            <i class="icon ionic-css-toggle ion-volume-medium"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
