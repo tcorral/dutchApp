@@ -12,26 +12,24 @@ angular.module('starter.controllers', [])
             var audio = document.getElementById('audio');
             var audioSource = document.getElementById('audioSource');
             var selector = "[data-btn='"+(buttonPrefix + "_" +index + '_'+ lang)+"']";
-            console.log(selector);
             var button = document.querySelector(selector);
             var classes = button.className;
-
-            console.log(button);
-
 
             url = url.replace('{{message}}', message).replace('{{lang}}', lang);
 
             audioSource.src = url;
-            audio.load();
-            audio.play();
-            audio.onplay = function () {
+            audio.addEventListener('play', function onplay(){
                 button.className = "button button-positive";
                 $scope.listen = function () {};
-            };
-            audio.onended = function () {
+                audio.removeEventListener('play', onplay);
+            });
+            audio.addEventListener('ended', function onended() {
                 $scope.listen = listen;
                 button.className = classes.replace('activated', '');
-            };
+                audio.removeEventListener('ended', onended);
+            });
+            audio.load();
+            audio.play();
         };
         $scope.toggle = function (item){
             item.toggle = !item.toggle;
